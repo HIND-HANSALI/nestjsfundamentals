@@ -22,5 +22,7 @@ export class ProductsService {
         //update the id who match in / what we want to update 
         return this.productRepository.update({id},{...updateProductDetails});
     }
-   
+    DeleteProduct(id:number){
+        return this.productRepository.delete({id} );
+    }
 }

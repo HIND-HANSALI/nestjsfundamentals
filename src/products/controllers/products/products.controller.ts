@@ -15,7 +15,7 @@ export class ProductsController {
     }
     @Post()
     createProduct(@Body() CreateProductDto:CreateProductDto){
-        this.productService.CreateProduct(CreateProductDto);
+        return this.productService.CreateProduct(CreateProductDto);
     }
 
 }

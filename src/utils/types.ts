@@ -6,3 +6,8 @@ export type CreateProductParams={
     quantity: number;
     description: string; 
 }
+export type UpdateProductParams={
+    title: string;
+    quantity: number;
+    description: string; 
+}

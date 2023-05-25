@@ -1,7 +1,7 @@
-import { Controller,Get ,Post ,Body} from '@nestjs/common';
+import { Controller,Get ,Post ,Body,ParseIntPipe,Param,Put,Delete} from '@nestjs/common';
 import{ProductsService} from '../../services/products/products.service'
 import{CreateProductDto} from '../../dtos/createProduct.dto';
-
+import{UpdateProductDto} from '../../dtos/updateProduct.dto';
 @Controller('products')
 export class ProductsController {
     // inject product service
@@ -17,5 +17,13 @@ export class ProductsController {
     createProduct(@Body() CreateProductDto:CreateProductDto){
         return this.productService.CreateProduct(CreateProductDto);
     }
-
+    // idw to return the updated
+    @Put(':id')
+    async updateProductById(@Param('id',ParseIntPipe) id:number,@Body() UpdateProductDto:UpdateProductDto){
+       await this.productService.UpdateProduct(id,UpdateProductDto);
+    }
+    @Delete(':id')
+    async deleteProductById(@Param('id',ParseIntPipe) id:number){
+        await this.productService.DeleteProduct(id);
+     }
 }

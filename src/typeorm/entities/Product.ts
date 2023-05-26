@@ -1,4 +1,6 @@
-import {Column,Entity,PrimaryGeneratedColumn} from'typeorm';
+import {Column,Entity,PrimaryGeneratedColumn,JoinColumn, OneToOne,OneToMany} from'typeorm';
+import {ProductDetails} from './ProductDetails';
+import {Review} from './Review';
 
 @Entity({name:'products'})
 export class Product{
@@ -16,5 +18,12 @@ export class Product{
 
     @Column({nullable:true})
     statut:String;
+
+    @OneToOne(() => ProductDetails, {cascade: true }) 
+    @JoinColumn()
+    details: ProductDetails;
+
+    @OneToMany(() => Review, (review) => review.product) //one-to-many relationship
+    reviews: Review[];
     
 }

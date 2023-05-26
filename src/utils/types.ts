@@ -11,3 +11,6 @@ export type UpdateProductParams={
     quantity: number;
     description: string; 
 }
+export type CreateProductDetailsParams={
+    description: string;
+}

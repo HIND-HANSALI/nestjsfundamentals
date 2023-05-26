@@ -14,3 +14,10 @@ export type UpdateProductParams={
 export type CreateProductDetailsParams={
     description: string;
 }
+export type CreateProductReviewsParams={
+    content: string;
+    rating: number;
+}
+export type CreateProductTagsParams={
+    name: string;
+}

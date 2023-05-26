@@ -3,6 +3,10 @@ import{ProductsService} from '../../services/products/products.service'
 import{CreateProductDto} from '../../dtos/createProduct.dto';
 import{UpdateProductDto} from '../../dtos/updateProduct.dto';
 import{CreateProductDetailsDto} from '../../dtos/createProductDetails.dto';
+import{CreateProductReviewsDto} from '../../dtos/createProductReviews.dto';
+import{CreateProductTagsDto} from '../../dtos/createProductTags.dto';
+
+
 @Controller('products')
 export class ProductsController {
     // inject product service
@@ -31,6 +35,15 @@ export class ProductsController {
     createProductDetails(@Param('id',ParseIntPipe) id:number,@Body() CreateProductDetailsDto:CreateProductDetailsDto){
         return this.productService.CreateProductDetails(id,CreateProductDetailsDto);
     }
-    // @Body('id/reviews')
 
+    @Post(':id/reviews')
+
+    createProductReviews(@Param('id',ParseIntPipe) id:number,@Body() CreateProductReviewsDto:CreateProductReviewsDto){
+        return this.productService.CreateProductReviews(id,CreateProductReviewsDto);
+    }
+
+    @Post(':id/tags')
+    createProductTags(@Param('id',ParseIntPipe) id:number,@Body() CreateProductTagsDto:CreateProductTagsDto){
+        return this.productService.CreateProductTags(id,CreateProductTagsDto);
+    }
 }

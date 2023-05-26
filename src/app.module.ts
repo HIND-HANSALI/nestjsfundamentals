@@ -4,8 +4,11 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from './typeorm/entities/Product';
-import { ProductsModule } from './products/products.module';
+import { Review } from './typeorm/entities/Review';
+import { Tag } from './typeorm/entities/Tag';
 
+import { ProductsModule } from './products/products.module';
+import { ProductDetails } from './typeorm/entities/ProductDetails';
 
 @Module({
   imports: [UsersModule,TypeOrmModule.forRoot({
@@ -15,7 +18,7 @@ import { ProductsModule } from './products/products.module';
     username: 'root',
     password: '',
     database:'nestjsfundamentals',
-    entities:[Product],
+    entities:[Product,ProductDetails,Review,Tag],
     synchronize: true,
   }), ProductsModule],
 

@@ -67,7 +67,19 @@ export class ProductsService {
         return this.reviewRepository.save(newReview); 
 
     }
+    async CreateProductTags(id: number,CreateProductTags:CreateProductTagsParams){
+        // const product = await this.productRepository.findOne(id, {relations: ['tags'] });
+        
+        const product = await this.productRepository.findOneBy({id});
+        const newTag=this.tagRepository.create(CreateProductTags);
+        newTag.products=[product];
+
+        return this.tagRepository.save(newTag); 
+        
+        // product.tags=[newTag];
+        // return this.tagRepository.save(newTag); 
    
+    }
 
     // async createTag(CreateTags:CreateProductTagsParams){
     //     const newTag = this.tagRepository.create(CreateTags);

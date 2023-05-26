@@ -1,6 +1,8 @@
-import {Column,Entity,PrimaryGeneratedColumn,JoinColumn, OneToOne,OneToMany} from'typeorm';
+import {Column,Entity,PrimaryGeneratedColumn,JoinColumn, OneToOne,OneToMany,ManyToMany,JoinTable} from'typeorm';
 import {ProductDetails} from './ProductDetails';
 import {Review} from './Review';
+import {Tag} from './Tag';
+
 
 @Entity({name:'products'})
 export class Product{
@@ -25,5 +27,9 @@ export class Product{
 
     @OneToMany(() => Review, (review) => review.product) //one-to-many relationship
     reviews: Review[];
+
+    @ManyToMany(() => Tag, (tag) => tag.products) // Define the many-to-many relationship
+    @JoinTable()
+    tags: Tag[];
     
 }

@@ -1,12 +1,13 @@
-import { Controller,Get ,Post ,Body,ParseIntPipe,Param,Put,Delete} from '@nestjs/common';
+import { Controller,Get ,Post ,Body,ParseIntPipe,Param,Put,Delete,UseInterceptors} from '@nestjs/common';
 import{ProductsService} from '../../services/products/products.service'
 import{CreateProductDto} from '../../dtos/createProduct.dto';
 import{UpdateProductDto} from '../../dtos/updateProduct.dto';
 import{CreateProductDetailsDto} from '../../dtos/createProductDetails.dto';
 import{CreateProductReviewsDto} from '../../dtos/createProductReviews.dto';
 import{CreateProductTagsDto} from '../../dtos/createProductTags.dto';
+import {LoggingInterceptor} from '../../../interceptor/logging.interceptor';
 
-
+@UseInterceptors(LoggingInterceptor)
 @Controller('products')
 export class ProductsController {
     // inject product service

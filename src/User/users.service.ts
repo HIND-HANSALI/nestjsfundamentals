@@ -1,7 +1,7 @@
 import { Injectable,HttpException, HttpStatus,NotFoundException } from '@nestjs/common';
 import { User } from './User.entity';
 import {InjectRepository} from '@nestjs/typeorm';
-import {Repository} from 'typeorm';
+import {Repository,ILike, FindManyOptions} from 'typeorm';
 import {CreateUserParams,UpdateUserParams} from './types';
 import * as bcrypt from 'bcryptjs';
 
@@ -59,6 +59,34 @@ export class UsersService {
 // async findById(id: number){
 //     return this.UserRepository.findOne({ where: { id } });
 //   }
+// search(key:string){
+//   const keyword = key ? { $or: [{ name: key }
+//     , { email: key }] } : {};
+//   return this.UserRepository.find(keyword);
+// }
+async search(key: string) {
+  const keyword = key
+    ? [
+        { name: ILike(`%${key}%`) },
+        { email: ILike(`%${key}%`) }
+      ]
+    : {};
 
+  return await this.UserRepository.find({ where: keyword });
+}
+Faker(){
+  
+  // const fakeName = faker.name.findName();
+  // const fakeEmail = faker.internet.email();
+  // const fakePassword = faker.internet.password();
+
+  // return {
+  //   name: fakeName,
+  //   email: fakeEmail,
+  //   password: fakePassword
+  // };
+}
 
 }
+
+
